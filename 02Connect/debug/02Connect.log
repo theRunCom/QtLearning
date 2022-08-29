@@ -1,0 +1,5 @@
+﻿  Generate moc_predefs.h
+  main.cpp
+  mainwindow.cpp
+  moc_mainwindow.cpp
+  02Connect.vcxproj -> D:\code\QtLearning\02Connect\debug\02Connect.exe
