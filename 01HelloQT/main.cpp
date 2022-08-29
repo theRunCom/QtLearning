@@ -6,7 +6,8 @@ int main(int argc, char *argv[])
 {
     // QApplication构造函数创建需要两个参数，因为Qt支持它自己的一些命令行参数
     QApplication a(argc, argv);
-    QLabel* label = new QLabel("Hello Qt!");
+    /*QLabel* label = new QLabel("Hello Qt!");*/
+    QLabel* label = new QLabel("<h2><i>Hello</i> <font color=red>Qt!</font></h2>");
     // Qt的任意部件都可以用作窗口
     // 先进行设置，然后再显示他们，从而避免了窗口部件的闪烁现象
     label->show();
