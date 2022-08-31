@@ -20,6 +20,7 @@ C++ Qt学习例子
 
 - 可视化界面设计Go To Cell的对话框：
 -> 效果图：[Go To Cell对话框](https://github.com/theRunCom/QtLearning/blob/main/images/05.png)
+
   步骤：
   
     1）使用文本标签Label，将它的text属性设置成“&Cell Location：”；
