@@ -43,5 +43,65 @@ C++ Qt学习例子
     
     10）另存为gotocelldialog.ui文件。
 #### 3）创建主窗口
+- 菜单栏:一个主窗口最多只有一个菜单栏。位于主窗口顶部、主窗口标题栏下面。
+
+通过 QMainWindow 类的 menubar（）函数获取主窗口菜单栏指针，如果当前窗口没有菜单栏，该函数会自动创建一个。
+```C++
+QMenuBar* menuBar() const;
+```
+创建菜单，调用 QMenu 的成员函数 addMenu 来添加菜单。
+```C++
+QAction* addMenu(QMenu* menu);
+QMenu* addMenu(const QString& title);
+QMenu* addMenu(const QIcon& icon, const QString& title);
+```
+创建菜单项，调用 QMenu 的成员函数 addAction 来添加菜单项
+```C++
+QAction* activeAction() const;
+QAction* addAction(const QString& text);
+QAction* addAction(const QIcon& icon, const QString& text);
+QAction* addAction(const QString& text, const QObject* receiver,const char* member, const QKeySequence& shortcut = 0);
+QAction* addAction(const QIcon& icon, const QString& text, const QObject* receiver, const char* member, const QKeySequence& shortcut = 0);
+```
+- 工具栏：调用 QMainWindowd 对象的成员函数 addToolBar(),该函数每次调用都会创建一个新的工具栏，并且返回该工具栏的指针；插入属于工具条的项，这时工具条上添加项也是用 QAction，通过 QToolBar 类的 addAction 函数添加；工具条是一个可移动的窗口，它的停靠区域由 QToolBar 的 allowAreas 决定，使用 setAllowedAreas（）函数指定停靠区域：
+```C++
+setAllowedAreas(Qt::LeftToolBarArea | Qt::RightToolBarArea);
+```
+使用 setFloatable（trueOrFalse）函数来设定工具栏可否浮动。
+使用 setMoveable（trueOrFalse）函数设定工具栏的可移动性：
+```C++
+setMoveable(false); // 工具条不可移动, 只能停靠在初始化的位置上
+```
+- 状态栏：一个 QMainWindow 的程序最多只有一个状态栏。
+```C++
+QMenuBar* menuBar() const;
+```
+添加小部件（从状态栏左侧添加）
+```C++
+void addWidget(QWidget* widget, int stretch = 0);
+//插入小部件
+int insertWidget(int index, QWidget* widget, int stretch = 0);
+//删除小部件
+void removeWidget(QWidget* widget);
+```
+添加小部件（从状态栏右侧添加）
+```C++
+void addPermenentWidget (QWidget* widget, int stretch = 0);
+```
+- 停靠部件（也称为铆接部件、浮动窗口）：停靠部件 QDockWidget，也称浮动窗口，可以有多个。
+```C++
+QDockWidget* dock = new QDockWidget("标题",this);
+//添加停靠部件到 mainWindow 中，并且设定默认停靠在左边
+addDockWidget(Qt::LeftDockWidgetArea,dock);
+//设定停靠部件允许停靠的范围
+dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::TopDockWidgetArea);
+```
+- 核心部件（中心部件）：一个 QTextEdit（编辑框控件）做核心部件。
+```C++
+QTextEdit* edit = new QTextEdit(this);
+// 设置 mainWindow 的核心部件
+setCentralWidget(edit);
+```
+
 #### 4）实现应用程序的的功能
 #### 5）创建自定义窗口部件
