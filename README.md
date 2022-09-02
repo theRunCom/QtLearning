@@ -3,6 +3,35 @@ C++ Qt学习例子
 
 ## 《C++ GUI Qt4 编程（第二版）》读书笔记
 ### QT基础
+.pro 就是工程文件(project)，它是 qmake 自动生成的用于生产 makefile 的配置文件。类似于 VS 中的.sln 和 vsproj 文件:
+```
+# 引入 Qt 的模块，core gui
+QT += core gui
+# 如果 qt 版本大于 4，那么引入 widgets 模块
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+# 生成最终文件的文件名，可执行文件 exe
+TARGET = 01_MyWidget
+# 项目类型，生成什么类型的文件，可执行程序还是库文件
+# app -建立一个应用程序的 makefile。这是默认值，所以如果模板没有被指定，这个将被使用。
+# lib - 建立一个库的 makefile。
+# vcapp - 建立一个应用程序的 VisualStudio 项目文件。
+# vclib - 建立一个库的 VisualStudio 项目文件。
+# subdirs -这是一个特殊的模板，它可以创建一个能够进入特定目录并且为一个项目文件生成 makefile 并且为它调用 make 的 makefile。
+TEMPLATE = app
+# 要编译的源文件列表
+SOURCES += \
+        main.cpp \
+        mywidget.cpp
+# 要编译的头文件列表
+HEADERS += \
+        mywidget.h
+```
+- 工程中包含的.ui 设计文件：FORMS += forms/painter.ui
+- 工程中包含的源文件：SOURCES += sources/main.cpp sources
+- 工程中包含的资源文件：RESOURCES += qrc/painter.qrc
+- CONFIG += c++11 //使用 c++11 的特性（qt5.6 以上版本默认使用 C++11）
+
+在这里使用“+=”，是因为我们添加我们的配置选项到任何一个已经存在中。这样做比使用“=”那样替换已经指定的所有选项更安全。
 #### 1）QT入门
 - 简单的HelloQT例子：[01HelloQT](https://github.com/theRunCom/QtLearning/tree/main/01HelloQT)
 - 信号与槽的初应用：[02Connect](https://github.com/theRunCom/QtLearning/tree/main/02Connect)
